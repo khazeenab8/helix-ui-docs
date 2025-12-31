@@ -1,9 +1,17 @@
+ import Link from "next/link";
 import "./globals.css";
 
 export const metadata = {
   title: "Helix UI Docs",
   description: "Documentation for Helix UI components",
 };
+
+const nav = [
+  { name: "Home", href: "/" },
+  { name: "Button", href: "/button" },
+  { name: "Input", href: "/input" },
+  { name: "Card", href: "/card" },
+];
 
 export default function RootLayout({
   children,
@@ -17,25 +25,51 @@ export default function RootLayout({
           {/* Sidebar */}
           <aside
             style={{
-              width: "240px",
+              width: "260px",
               background: "#0f172a",
               color: "white",
-              padding: "20px",
+              padding: "22px 18px",
             }}
           >
-            <h2>Helix UI</h2>
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              <li>Introduction</li>
-              <li>Button</li>
-              <li>Input</li>
-              <li>Card</li>
-            </ul>
+            <div style={{ marginBottom: "18px" }}>
+              <div style={{ fontSize: "20px", fontWeight: 700 }}>Helix UI</div>
+              <div style={{ opacity: 0.8, fontSize: "12px" }}>
+                Documentation
+              </div>
+            </div>
+
+            <nav>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {nav.map((item) => (
+                  <li key={item.href} style={{ marginBottom: "10px" }}>
+                    <Link
+                      href={item.href}
+                      style={{
+                        display: "block",
+                        padding: "10px 12px",
+                        borderRadius: "10px",
+                        textDecoration: "none",
+                        color: "white",
+                        background: "rgba(255,255,255,0.06)",
+                      }}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div style={{ marginTop: "18px", opacity: 0.7, fontSize: "12px" }}>
+              v1 preview • content in progress
+            </div>
           </aside>
 
-          {/* Main Content */}
-          <main style={{ flex: 1, padding: "40px" }}>{children}</main>
+          {/* Main */}
+          <main style={{ flex: 1, padding: "34px" }}>{children}</main>
         </div>
       </body>
     </html>
   );
 }
+
